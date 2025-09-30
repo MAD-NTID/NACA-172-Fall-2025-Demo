@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gridbox</title>
+    <!-- This is Embedded CSS - Code directly in the same web page
+     it takes priority over External CSS -->
+    <style>
+        body {
+            display: grid;
+            grid-template:
+                "header header header" 100px
+                "nav main aside" 1fr
+                "footer footer junk" 80px
+                / 200px 1fr 200px;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header style="grid-area: header;">
+        <h1>Header</h1>
+    </header>
+
+    <nav style="grid-area: nav;">
+        <h1>Nav</h1>
+    </nav>
+
+    <main style="grid-area: main;">
+        <h1>Main</h1>
+    </main>
+
+    <aside style="grid-area: aside;">
+        <h1>Aside</h1>
+    </aside>
+
+    <footer style="grid-area: footer;">
+        <h1>Footer</h1>
+    </footer>
+
+    <div style="grid-area: junk;">
+        <h1>Some other Junk</h1>
+    </div>
+</body>
+</html>
