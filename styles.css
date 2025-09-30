@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Type Selector all <p>'s */
+p {
+    color: orange;
+    font-size: 16px;
+    text-decoration: underline;
+}
+
+/* Class selector - class must match in HTML */
+.myFavoriteClass {
+    font-size: 24px;
+}
+
+/* ID selector - must match an id attribute in HTML */
+#theProfessor {
+    text-decoration: none;
+}
+
+/* descendant selector */
+main section h1 {
+    color: brown;
+}
+
+[href] {
+    text-decoration: none;
+    color: green;
+}
+
+/* child combinator target */
+main > section > div > p {
+    font-size: 9px;
+}
