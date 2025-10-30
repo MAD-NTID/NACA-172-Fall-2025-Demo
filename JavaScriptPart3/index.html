@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+</head>
+<body>
+    <form action="#" id="userForm" method="get">
+        <fieldset>
+            <legend>Personal Information</legend>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required min="1"><br><br>
+
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+
+    <script>
+        // This VALID form is the final determinant on whether or not we SEND the form
+        let validForm = false;
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const ageInput = document.getElementById("age");
+
+        // This function checks if a name is at least 2 characters or more
+        function isValidName(name) {
+            return name.length >= 2;
+        }
+
+        function isValidDomain(name) {
+            return name.length >= 2;
+        }
+
+        // The next question is,... 
+        // WHEN do we check for valid inputs?
+        // First thing to do is STOP the form from submitting
+        document.getElementById("userForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // At this point, we can VALIDATE user input
+            // Let's split the name input by spaces
+            let nameSplit = nameInput.value.split(" ");
+            
+            if(nameSplit.length == 2) {
+                // we validate first and last
+                if(isValidName(nameSplit[0]) && isValidName(nameSplit[1])) {
+                    validForm = true;
+                } else {
+                    validForm = false;
+                    alert("Invalid First, and LastName");
+                    nameInput.focus();
+                }
+            }
+            else if(nameSplit.length == 3) {
+                // we validate first, middle and last
+                if(isValidName(nameSplit[0]) && isValidName(nameSplit[1]) && isValidName(nameSplit[2])) {
+                    validForm = true;
+                } else {
+                    validForm = false;
+                    alert("Invalid First, Middle, and LastName");
+                    nameInput.focus();
+                }
+            } else {
+                alert("Invalid Name - First name and last name required (middle name optional)");
+                nameInput.focus();
+            }
+
+            let emailNameSplit = emailInput.value.split("@");
+            let domainNameSplit = emailNameSplit[1].split(".");
+
+            if(isValidDomain(domainNameSplit[1]))
+                validForm = true;
+            else {
+                alert("Invalid Email");
+                emailInput.focus();
+            }
+
+            // console.log(validForm);
+            // console.log(emailInput.value);
+            // console.log(ageInput.value);
+        });
+    </script>
+</body>
+</html>
