@@ -1,5 +1,6 @@
 // Grab the Login Status Element
 const loginStatus = document.querySelector("#loginStatus");
+const logoutButton = document.querySelector("#logoutButton");
 
 // Grab the Form first
 const form = document.querySelector("#myForm");
@@ -20,11 +21,8 @@ form.addEventListener('submit', function(event){
     // Get the Promised Response and convert to JS Real Object
     .then(response => response.json())
     .then(data => {
-        // Process the login on client side
-        // After successfully login in, we display the User is Logged in Message
-        console.log(data);
         if(data['user'] != null) {
-            loginStatus.classList.toggle('hidden');
+            toggleLoginStatus();
         }
         else {
             alert('Invalid Login. Try again');
@@ -34,3 +32,32 @@ form.addEventListener('submit', function(event){
         console.log(error);
     });
 });
+
+// Add event listener to Logout Button
+logoutButton.addEventListener('click', function() {
+    fetch('logout.php', {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'}
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Logout Failed");
+        }
+
+        return response.json();
+    })
+    .then(data => {
+        // Toggle the Login Status
+        toggleLoginStatus();
+        alert(data['message']);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+});
+
+// Function to toggle login status visibility
+function toggleLoginStatus() {
+    loginStatus.classList.toggle('hidden');
+    form.classList.toggle('hidden');
+}

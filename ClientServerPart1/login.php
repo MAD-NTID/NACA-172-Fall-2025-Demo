@@ -28,7 +28,7 @@ else {
 
         session_start();
 
-        $_SESSION['username'] = $response['user'];
+        $_SESSION['user'] = $response['user'];
     }
     else {
         $response = [
