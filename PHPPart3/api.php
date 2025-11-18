@@ -62,11 +62,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
     // Convert the response to a json string
     $response = json_encode($response);
+    
+    header('Content-Type: application/json');
 
-    // echo the response
-    // echo $response;
-
-    header("Location: index.php?response=$response");
+    echo $response;
 }
 else {
     echo "Invalid Request. POST ONLY";
