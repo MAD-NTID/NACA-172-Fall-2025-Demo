@@ -11,9 +11,6 @@
     </style>
 </head>
 <body>
-    <?php
-        session_start(); ?>
-
     <div id="loginStatus" class="hidden">
         <h1>User is Logged In</h1>
 
