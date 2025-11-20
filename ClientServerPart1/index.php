@@ -11,7 +11,12 @@
     </style>
 </head>
 <body>
-    <div id="loginStatus" class="hidden">
+    <?php
+    session_start();
+
+    $user = isset($_SESSION['user']);
+    ?>
+    <div id="loginStatus" class="<?php echo $user ? '' : 'hidden'; ?>">
         <h1>User is Logged In</h1>
 
         <button type="button" id="logoutButton">
@@ -19,7 +24,7 @@
         </button>
     </div>
 
-    <form action="#" method="POST" id="myForm">
+    <form action="#" method="POST" id="myForm" class="<?php echo !$user ? '' : 'hidden'; ?>">
         <label for="username">Username: </label>
         <input type="text" name="username" id="username" required>
 
